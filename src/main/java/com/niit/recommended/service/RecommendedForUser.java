@@ -11,9 +11,15 @@ public interface RecommendedForUser {
 
     public List<Movie> getRecommendedList(String name);
 
-    public List<Movie> getMovieListByGenre(String name , List<Genre> genres);
+    public List<Movie> getMovieListByGenreName(String name);
+
+    public List<Movie> getMovieListByMovieName(String movieName);
 
     public  List<Movie> getMovieListByName(String original_title);
+
+//    public String getMovieIdByGenre(String name);
+
+
 
 
 }

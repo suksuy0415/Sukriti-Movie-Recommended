@@ -1,37 +1,33 @@
 package com.niit.recommended.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Movie {
 
 
-    private String backdrop_path;
-    private List<Genre> genreList;
 
-    //private String genreId;
-    private int  id;
+    private String backdrop_path;
+
+
     private String original_title;
     private String overview;
 
     private String poster_path;
-    private float vote_average;
+    private String vote_average;
+
+    private String release_date;
 
 
-   // private List<Movie> movieList;
-
-
-
-    public Movie(){}
-
-    public Movie(String backdrop_path, List<Genre> genreList, int id, String original_title, String overview, String poster_path, float vote_average) {
+    public Movie(String backdrop_path, String original_title, String overview, String poster_path, String vote_average, String release_date) {
         this.backdrop_path = backdrop_path;
-        this.genreList = genreList;
-        this.id = id;
         this.original_title = original_title;
         this.overview = overview;
         this.poster_path = poster_path;
         this.vote_average = vote_average;
+        this.release_date = release_date;
     }
+
 
     public String getBackdrop_path() {
         return backdrop_path;
@@ -39,22 +35,6 @@ public class Movie {
 
     public void setBackdrop_path(String backdrop_path) {
         this.backdrop_path = backdrop_path;
-    }
-
-    public List<Genre> getGenreList() {
-        return genreList;
-    }
-
-    public void setGenreList(List<Genre> genreList) {
-        this.genreList = genreList;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getOriginal_title() {
@@ -81,25 +61,31 @@ public class Movie {
         this.poster_path = poster_path;
     }
 
-    public float getVote_average() {
+    public String getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(float vote_average) {
+    public void setVote_average(String vote_average) {
         this.vote_average = vote_average;
     }
 
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
 
     @Override
     public String toString() {
         return "Movie{" +
                 "backdrop_path='" + backdrop_path + '\'' +
-                ", genreList=" + genreList +
-                ", id=" + id +
                 ", original_title='" + original_title + '\'' +
                 ", overview='" + overview + '\'' +
                 ", poster_path='" + poster_path + '\'' +
-                ", vote_average=" + vote_average +
+                ", vote_average='" + vote_average + '\'' +
+                ", release_date='" + release_date + '\'' +
                 '}';
     }
 }
