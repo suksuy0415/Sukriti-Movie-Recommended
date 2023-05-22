@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 
 
 @Repository
-public class MovieRepository{
+public class MovieRecommendedRepository {
 
 
     private List<Movie> movieList = new ArrayList<>();

@@ -28,6 +28,14 @@ public class Movie {
         this.release_date = release_date;
     }
 
+    public Movie(String original_title, String overview, String poster_path, String vote_average, String release_date) {
+        this.original_title = original_title;
+        this.overview = overview;
+        this.poster_path = poster_path;
+        this.vote_average = vote_average;
+        this.release_date = release_date;
+    }
+
 
     public String getBackdrop_path() {
         return backdrop_path;
