@@ -47,15 +47,13 @@ public class RecommendedForUserImpl implements RecommendedForUser{
    @Override
     public List<Movie> getMovieListByGenreName(String name) {
 
-       List<Genre> genres= movieRepository.getMovieGenreList();
-       String id=movieRepository.getGenreIdByMovieName(name , genres);
-       List<Movie> movies=movieRepository.movieListByGenreName(id);
+       List<Genre> genres = movieRepository.getMovieGenreList();
+       String id = movieRepository.getGenreIdByMovieName(name, genres);
+       List<Movie> movies = movieRepository.movieListByGenreName(id);
 
-         return movies;
-    }
-
-
-    @Override
+       return movies;
+   }
+   @Override
     public List<Movie> getMovieListByMovieName(String movieName) {
 
         List<Movie> movie= movieRepository.getMovieList();
@@ -76,7 +74,8 @@ public class RecommendedForUserImpl implements RecommendedForUser{
        List<Movie> movie = ((List<Object>)result.get("results"))
                 .stream()
                 .map(i -> (LinkedHashMap)i)
-                .map(i -> new Movie(i.get("original_title").toString()
+                .map(i -> new Movie(i.get("Id").toString()
+                        ,i.get("original_title").toString()
                         ,i.get("overview").toString()
                         ,i.get("poster_path").toString()
                         ,i.get("vote_average").toString()

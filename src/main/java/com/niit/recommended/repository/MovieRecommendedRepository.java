@@ -48,10 +48,9 @@ public class MovieRecommendedRepository {
         RestTemplate restTemplate = new RestTemplate();
         JSONObject result2 = restTemplate.getForObject(url1, JSONObject.class);
 
-        List<Movie> movie = ((List<Object>)result2.get("results"))
+        List<Movie> movie = ((List<LinkedHashMap>)result2.get("results"))
                 .stream()
-                .map(i -> (LinkedHashMap)i)
-                .map(i -> new Movie(i.get("backdrop_path").toString(), i.get("original_title").toString(),i.get("overview").toString(),i.get("poster_path").toString(),(i.get("vote_average").toString()),i.get("release_date").toString()))
+                .map((i) -> new Movie(i.get("Id").toString(),i.get("original_title").toString(),i.get("overview").toString(),i.get("poster_path").toString(),(i.get("vote_average").toString()),i.get("release_date").toString()))
                 .toList();
 
         return movie;
@@ -66,10 +65,9 @@ public class MovieRecommendedRepository {
         RestTemplate restTemplate = new RestTemplate();
         JSONObject result2 = restTemplate.getForObject(url1, JSONObject.class);
 
-        List<Movie> movie = ((List<Object>)result2.get("results"))
+        List<Movie> movie = ((List<LinkedHashMap>)result2.get("results"))
                 .stream()
-                .map(i -> (LinkedHashMap)i)
-                .map(i -> new Movie(i.get("backdrop_path").toString(), i.get("original_title").toString(),i.get("overview").toString(),i.get("poster_path").toString(),(i.get("vote_average").toString()),i.get("release_date").toString()))
+                .map(i -> new Movie(i.get("Id").toString(), i.get("original_title").toString(),i.get("overview").toString(),i.get("poster_path").toString(),(i.get("vote_average").toString()),i.get("release_date").toString()))
                 .toList();
 
         return movie;
@@ -93,7 +91,7 @@ public class MovieRecommendedRepository {
 
     public List<Movie> getMovieByMovieName(String movieName ,List<Movie> movies){
 
-        List<Movie> movies1 = movies.stream().filter(i -> i.getOriginal_title().equals(movieName)).toList();
+        List<Movie> movies1 = movies.stream().filter(i -> i.getOriginalTitle().equals(movieName)).toList();
 
         return movies1;
     }

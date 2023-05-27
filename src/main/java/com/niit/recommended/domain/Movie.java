@@ -7,50 +7,42 @@ public class Movie {
 
 
 
-    private String backdrop_path;
+    private String movieId;
 
-
-    private String original_title;
+    private String originalTitle;
     private String overview;
 
-    private String poster_path;
-    private String vote_average;
-
-    private String release_date;
+    private String posterPath;
+    private String voteAverage;
 
 
-    public Movie(String backdrop_path, String original_title, String overview, String poster_path, String vote_average, String release_date) {
-        this.backdrop_path = backdrop_path;
-        this.original_title = original_title;
+    private String releaseDate;
+
+
+    public Movie(String movieId, String originalTitle, String overview, String posterPath, String voteAverage, String releaseDate) {
+        this.movieId = movieId;
+        this.originalTitle = originalTitle;
         this.overview = overview;
-        this.poster_path = poster_path;
-        this.vote_average = vote_average;
-        this.release_date = release_date;
-    }
-
-    public Movie(String original_title, String overview, String poster_path, String vote_average, String release_date) {
-        this.original_title = original_title;
-        this.overview = overview;
-        this.poster_path = poster_path;
-        this.vote_average = vote_average;
-        this.release_date = release_date;
+        this.posterPath = posterPath;
+        this.voteAverage = voteAverage;
+        this.releaseDate = releaseDate;
     }
 
 
-    public String getBackdrop_path() {
-        return backdrop_path;
+    public String getMovieId() {
+        return movieId;
     }
 
-    public void setBackdrop_path(String backdrop_path) {
-        this.backdrop_path = backdrop_path;
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
-    public String getOriginal_title() {
-        return original_title;
+    public String getOriginalTitle() {
+        return originalTitle;
     }
 
-    public void setOriginal_title(String original_title) {
-        this.original_title = original_title;
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
     }
 
     public String getOverview() {
@@ -61,39 +53,40 @@ public class Movie {
         this.overview = overview;
     }
 
-    public String getPoster_path() {
-        return poster_path;
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public void setPoster_path(String poster_path) {
-        this.poster_path = poster_path;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
-    public String getVote_average() {
-        return vote_average;
+    public String getVoteAverage() {
+        return voteAverage;
     }
 
-    public void setVote_average(String vote_average) {
-        this.vote_average = vote_average;
+    public void setVoteAverage(String voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
+
 
     @Override
     public String toString() {
         return "Movie{" +
-                "backdrop_path='" + backdrop_path + '\'' +
-                ", original_title='" + original_title + '\'' +
+                "movieId='" + movieId + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
                 ", overview='" + overview + '\'' +
-                ", poster_path='" + poster_path + '\'' +
-                ", vote_average='" + vote_average + '\'' +
-                ", release_date='" + release_date + '\'' +
+                ", posterPath='" + posterPath + '\'' +
+                ", voteAverage='" + voteAverage + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
                 '}';
     }
 }
