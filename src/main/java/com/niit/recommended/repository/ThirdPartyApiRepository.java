@@ -3,11 +3,14 @@ package com.niit.recommended.repository;
 import com.niit.recommended.domain.Cast;
 import com.niit.recommended.domain.Movie;
 import org.json.simple.JSONObject;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 
+
+@Repository
 public class ThirdPartyApiRepository {
 
 
@@ -68,6 +71,7 @@ public class ThirdPartyApiRepository {
                 .map(i -> new Cast(
                         i.get("name").toString()
                         ,i.get("known_for_department").toString()))
+                .limit(5)
                 .toList();
 
 
@@ -92,6 +96,7 @@ public class ThirdPartyApiRepository {
                         ,i.get("poster_path").toString()
                         ,(i.get("vote_average").toString())
                         ,i.get("release_date").toString()))
+                .limit(10)
                 .toList();
 
         return movie;
