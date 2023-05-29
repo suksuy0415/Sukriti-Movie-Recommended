@@ -2,6 +2,7 @@ package com.niit.recommended.repository;
 
 import com.niit.recommended.domain.Cast;
 import com.niit.recommended.domain.Movie;
+import com.niit.recommended.domain.Trailer;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
@@ -27,7 +28,7 @@ public class ThirdPartyApiRepository {
                 .stream()
                 .map(i -> (LinkedHashMap)i)
                 .map(i -> new Movie(
-                         i.get("Id").toString()
+                         i.get("id").toString()
                          ,i.get("original_title").toString()
                         ,i.get("overview").toString()
                         ,i.get("poster_path").toString()
@@ -82,7 +83,10 @@ public class ThirdPartyApiRepository {
 
     public List<Movie> movieListforDifferentGenre(String id)
     {
-        String url1 = "https://api.themoviedb.org/3/genre/"+id+"/movies?api_key=dd4d819639705d332d531217b4f7c6b6";
+
+        String d = id;
+
+        String url1 = "https://api.themoviedb.org/3/genre/"+d+"/movies?api_key=dd4d819639705d332d531217b4f7c6b6";
 
 
         RestTemplate restTemplate = new RestTemplate();
@@ -90,7 +94,7 @@ public class ThirdPartyApiRepository {
 
         List<Movie> movie = ((List<LinkedHashMap>)result2.get("results"))
                 .stream()
-                .map(i -> new Movie(i.get("Id").toString()
+                .map(i -> new Movie(i.get("id").toString()
                         , i.get("original_title").toString()
                         ,i.get("overview").toString()
                         ,i.get("poster_path").toString()
@@ -101,6 +105,54 @@ public class ThirdPartyApiRepository {
 
         return movie;
     }
+
+
+    public List<Trailer> getMovieTrailer(String movieId)
+    {
+        String url1 = "https://api.themoviedb.org/3/movie/"+movieId+"/videos?api_key=dd4d819639705d332d531217b4f7c6b6";
+
+        RestTemplate restTemplate = new RestTemplate();
+        JSONObject result = restTemplate.getForObject(url1, JSONObject.class);
+
+        List<Trailer> trailer = ((List<LinkedHashMap>)result.get("results"))
+                .stream()
+                .map(i -> new Trailer(i.get("key").toString()
+                        , i.get("site").toString()
+                        , i.get("id").toString()))
+                .limit(1)
+                .toList();
+
+        return trailer;
+
+    }
+
+
+    public List<Movie> upcomingMovieList()
+    {
+        String url1 = "https://api.themoviedb.org/3/movie/upcoming?api_key=dd4d819639705d332d531217b4f7c6b6&page=1&language=en-US&region=US";
+
+        System.out.println(url1);
+        RestTemplate restTemplate = new RestTemplate();
+        JSONObject result = restTemplate.getForObject(url1, JSONObject.class);
+
+        System.out.println(result.get("results"));
+        List<Movie> movie = ((List<Object>)result.get("results"))
+                .stream()
+                .map(i -> (LinkedHashMap)i)
+                .map(i -> new Movie(
+                        i.get("id").toString()
+                        ,i.get("original_title").toString()
+                        ,i.get("overview").toString()
+                        ,i.get("poster_path").toString()
+                        ,i.get("vote_average").toString()
+                        ,i.get("release_date").toString()))
+                .limit(10)
+                .toList();
+
+
+        return movie;
+    }
+
 
 
 }
