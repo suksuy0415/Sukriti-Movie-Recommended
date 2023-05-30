@@ -1,9 +1,6 @@
 package com.niit.recommended.service;
 
-import com.niit.recommended.domain.Cast;
-import com.niit.recommended.domain.Genre;
-import com.niit.recommended.domain.Movie;
-import com.niit.recommended.domain.Trailer;
+import com.niit.recommended.domain.*;
 
 import java.util.List;
 
@@ -30,6 +27,7 @@ public interface RecommendedForUser {
     public List<Trailer> getMovieTrailer(String movieName);
 
     public List<Movie> upcomingMovieList();
+    public Object getMovieInfoData(String movieName);
 
 
 //    public String getMovieIdByGenre(String name);

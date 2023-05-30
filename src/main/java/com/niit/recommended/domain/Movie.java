@@ -12,6 +12,7 @@ public class Movie {
     private String originalTitle;
     private String overview;
 
+
     private String posterPath;
     private String voteAverage;
 

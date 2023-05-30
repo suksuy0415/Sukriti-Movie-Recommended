@@ -1,9 +1,6 @@
 package com.niit.recommended.service;
 
-import com.niit.recommended.domain.Cast;
-import com.niit.recommended.domain.Genre;
-import com.niit.recommended.domain.Movie;
-import com.niit.recommended.domain.Trailer;
+import com.niit.recommended.domain.*;
 import com.niit.recommended.repository.MovieRecommendedRepository;
 import com.niit.recommended.repository.ThirdPartyApiRepository;
 import org.json.simple.JSONObject;
@@ -11,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -28,6 +24,25 @@ public class RecommendedForUserImpl implements RecommendedForUser{
     public RecommendedForUserImpl(MovieRecommendedRepository movieRepository , ThirdPartyApiRepository thirdPartyApiRepository) {
         this.movieRepository = movieRepository;
         this.thirdPartyApiRepository = thirdPartyApiRepository;
+    }
+
+
+
+    public Object getMovieInfoData(String movieName)
+    {
+
+        //List<Movie> movieList = new ArrayList<>();
+        List<Movie> movieList = thirdPartyApiRepository.searchMovieListByMovieNameOne(movieName);
+              //String movieId = movieList.get(0).getMovieId();
+         String id=thirdPartyApiRepository.getMovieIdByMovieName(movieName,movieList);
+              List<Cast> castList = thirdPartyApiRepository.getMovieCredits(id);
+              List<Trailer> trailerList = thirdPartyApiRepository.getMovieTrailer(id);
+
+            MovieInfo movieInfo = new MovieInfo(movieList,castList,trailerList);
+              //movieInfoList.addAll((Collection<? extends MovieInfo>) Arrays.asList(movieList));
+
+              return  movieInfo;
+
     }
 
 
@@ -69,6 +84,8 @@ public class RecommendedForUserImpl implements RecommendedForUser{
 
         return movies;
     }
+
+
 
     public List<Movie> searchMovieListByMovieName(String movieName)
     {
